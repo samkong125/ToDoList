@@ -1,6 +1,9 @@
+
 var expect = require('chai').expect;
 var assert = require("assert");
 var request = require("request");
+
+require("../app.js");
 
 describe('Testing the add todo item function', function() {
     it("it should take in string", function() {
@@ -15,4 +18,17 @@ describe('Testing the add todo item function', function() {
         });*/
     });
 
+});
+
+describe("Gettodo", () => {
+    //Test to get all todo items
+    it("should get all to do items", (done) => {
+        chai.request(app)
+            .get("/")
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a("object");
+                done();
+            });
+    });
 });
